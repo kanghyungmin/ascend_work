@@ -6,15 +6,6 @@ import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(DataAppModule);
-  // app.connectMicroservice<MicroserviceOptions>({
-  //   transport: Transport.GRPC,
-  //   options: {
-  //     url: 'localhost:3002',
-  //     package: 'hero',
-  //     protoPath: join(__dirname, '../../../libs/grpc/proto/example.proto'),
-  //   },
-  // });
-  // await app.startAllMicroservices();
   await app.listen(3000);
   console.log(`Application is running on: ${await app.getUrl()}`);
 }

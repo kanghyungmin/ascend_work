@@ -8,4 +8,4 @@ WORKDIR /app
 COPY --from=builder /prepare .
 
 EXPOSE 3000
-CMD [ "nest", "start" "data-app" ]
+CMD [ "nest", "start"]
