@@ -16,7 +16,9 @@
       "entryFile": "main",
       "sourceRoot": "apps/trade-app/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/trade-app/tsconfig.app.json"
+        "tsConfigPath": "apps/trade-app/tsconfig.app.json",
+        "assets": ["**/*.proto"],
+        "watchAssets": true
       }
     },
     "data-app": {
@@ -25,7 +27,9 @@
       "entryFile": "main",
       "sourceRoot": "apps/data-app/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/data-app/tsconfig.app.json"
+        "tsConfigPath": "apps/data-app/tsconfig.app.json",
+        "assets": ["**/*.proto"],
+        "watchAssets": true
       }
     }
   }
