@@ -10,13 +10,13 @@ async function bootstrap() {
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.GRPC,
     options: {
-      url: 'localhost:3002',
+      url: `${process.env.ALB_DNS_NAME}:3002`,
       package: 'trade',
       protoPath: join(__dirname, '../../../libs/grpc/proto/trade.proto'),
     },
   });
   await app.startAllMicroservices();
-  await app.listen(3000);
+  await app.listen(process.env.PORT);
   console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();
