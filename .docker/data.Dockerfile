@@ -8,4 +8,4 @@ WORKDIR /app
 COPY --from=builder /prepare .
 RUN ["npm", "i", "-g", "@nestjs/cli"]
 EXPOSE 3000
-CMD [ "nest", "start"]
+CMD [ "nest", "start","data-app"]
