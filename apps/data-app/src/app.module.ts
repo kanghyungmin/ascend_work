@@ -16,7 +16,7 @@ import { TradeService } from './service/trade.service';
         name: 'TRADE_RPC_CLIENT',
         transport: Transport.GRPC,
         options: {
-          url: 'localhost:3002',
+          url: `${process.env.ALB_DNS_NAME}:${process.env.TRADE_PORT}`,
           package: 'trade',
           protoPath: join(__dirname, '../../../libs/grpc/proto/trade.proto'),
         },
@@ -24,7 +24,6 @@ import { TradeService } from './service/trade.service';
     ]),
   ],
   controllers: [DataAppController],
-  // controllers: [DataAppController],
   providers: [DataAppService, DataService, BinanceDataService, TradeService],
 })
 export class DataAppModule {}
