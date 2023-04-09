@@ -3,17 +3,30 @@ import { AppService } from './app.service';
 import { GrpcMethod } from '@nestjs/microservices';
 import { Hero, HeroById } from 'libs/grpc/interfaces/trade.interface';
 import { TradeData } from 'libs/libs.interface';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Trade, TradeSchema } from 'libs/model/trade.entity';
+import { Side } from 'libs/libs.enum';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    @InjectModel(Trade.name)
+    private readonly tradeModel: Model<Trade>,
+  ) {}
 
   @Post('/trade')
-  postTrade(@Body() tradeInfo: TradeData & { tradeId: string }): {
+  async postTrade(@Body() tradeInfo: TradeData & { tradeId: string }): Promise<{
     status: string;
-  } {
-    console.log(tradeInfo);
-    // orm 형성 &
+  }> {
+    await this.tradeModel.create({
+      tradeId: tradeInfo.tradeId,
+      price: tradeInfo.price,
+      qty: tradeInfo.qty,
+      side: tradeInfo.side == Side.BUY ? 'BUY' : 'SELL',
+    });
+
     return {
       status: 'ok',
     };

@@ -6,7 +6,6 @@ import { join } from 'path';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const pathString = join(__dirname, '../../hero/hero.proto');
-  console.log(`pathString: ${pathString}`);
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.GRPC,
     options: {
