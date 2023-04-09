@@ -62,7 +62,7 @@ export class BinanceDataService implements IDataService {
       // console.log(`elapsed time : ${new Date().getTime() - start}`);
     };
 
-    setInterval(checkFun, 1000); // 1분
+    setInterval(checkFun, 60000); // 1분
   }
   private async _onMessage(data) {
     const { b, B, a, A } = JSON.parse(data); //데이터 추출
