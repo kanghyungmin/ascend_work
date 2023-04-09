@@ -1,12 +1,9 @@
-<!-- TABLE OF CONTENTS -->
+<!--  목 차  -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>목 차</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
+      <a href="#about-the-project">과제 설명</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
