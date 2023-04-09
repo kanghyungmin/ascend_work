@@ -8,4 +8,8 @@ export class DataService {
   ) {
     console.log('datasources', datasources);
   }
+
+  gettickData() {
+    return this.datasources.gettickData();
+  }
 }

@@ -5,7 +5,7 @@ import { Spot } from '@binance/connector';
 import { State, Side } from 'libs/libs.enum';
 import axios from 'axios';
 
-interface element {
+export interface element {
   bid: string;
   bidQty: string;
   ask: string;
@@ -26,6 +26,10 @@ export class BinanceDataService implements IDataService {
   private resultChkStr: Map<string, StrategyData> = new Map();
   constructor() {
     this.open();
+  }
+  public gettickData() {
+    if (this.tickData) return this.tickData;
+    else return 'no tick';
   }
   public open() {
     const callbacks = {
