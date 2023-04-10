@@ -5,10 +5,10 @@
   <summary>목 차</summary>
   <ol>
     <li>
-      <a href="#과제설명">과제 설명</a>
+      <a href="#과제-설명">과제 설명</a>
     </li>
     <li>
-      <a href="#stack">기슬 스택</a>
+      <a href="#stack">기술 스택</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -25,6 +25,10 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
+
+
+
+
 
 
 <!-- 과제 설명 -->
