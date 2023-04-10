@@ -96,9 +96,17 @@
 * 아래와 같이 각 Container에 대한 배포 브랜치가 존재
   - Data Container(가칭) : `deploy/data`
   - Trade Container(가칭) : `deploy/trade`
-* 각 배포 브랜치에 Merge 시, 배포되도록 git actions 구성
+* 각 배포 브랜치에 Merge 시, 배포되도록 `git actions` 구성
+ 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## 데이터 수집
+* 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## 전략
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 이슈 
 * Container의 통신은 처음 gRPC를 사용했지만, 인프라 배포 시 GRPC 통신 설정에 애로 사항이 있어 &nbsp;  
