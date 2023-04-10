@@ -5,7 +5,7 @@
   <summary>목 차</summary>
   <ol>
     <li>
-      <a href="#about-the-project">과제 설명</a>
+      <a href="#과제 설명">과제 설명</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -24,13 +24,14 @@
 </details>
 
 
-<!-- ABOUT THE PROJECT -->
+<!-- 과제 설명 -->
 ## 과제 설명
 * 전략 
 * 데이터 수집
 * CI/CD 구성
 * 인프라
 * 모니터링
+<!-- 기술 스택 -->
 ## 기술 스택
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
