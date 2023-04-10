@@ -18,7 +18,7 @@
         <li><a href="#CI/CD-구성">CI/CD 구성</a></li>
         <li><a href="#데이터-수집">데이터 수집</a></li>
         <li><a href="#전략">전략</a></li>
-        <li><a href="#모니터링">모니터링</a></li>
+        <li><a href="#모니터링"><del>모니터링</del></a></li>
       </ul>
     </li>
     <li>
