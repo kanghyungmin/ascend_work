@@ -5,7 +5,7 @@
   <summary>목 차</summary>
   <ol>
     <li>
-      <a href="#project">과제 설명</a>
+      <a href="#과제설명">과제 설명</a>
     </li>
     <li>
       <a href="#stack">기슬 스택</a>
@@ -28,7 +28,7 @@
 
 
 <!-- 과제 설명 -->
-## project
+## 과제 설명
 * 전략 
 * 데이터 수집
 * CI/CD 구성
