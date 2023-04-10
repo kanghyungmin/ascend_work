@@ -101,11 +101,15 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 데이터 수집
-* 
+* _문제를 정확히 파악하고 진행해야하는데 그렇지 못해 요구하신 사항과 맞지 않는 부분이 있습니다. 양해 부탁 드립니다._
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 전략
+* __
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## <del>모니터링</del>
+* _이 부분은 작업을 수행하지 못했습니다._
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 이슈 
