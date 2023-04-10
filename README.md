@@ -5,10 +5,10 @@
   <summary>목 차</summary>
   <ol>
     <li>
-      <a href="#과제 설명">과제 설명</a>
+      <a href="#project">과제 설명</a>
     </li>
     <li>
-      <a href="#기술 스택">기슬 스택</a>
+      <a href="#stack">기슬 스택</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -28,14 +28,14 @@
 
 
 <!-- 과제 설명 -->
-## 과제 설명
+## project
 * 전략 
 * 데이터 수집
 * CI/CD 구성
 * 인프라
 * 모니터링
 <!-- 기술 스택 -->
-## 기술 스택
+## stack
 * 전략 
 * 데이터 수집
 * CI/CD 구성
