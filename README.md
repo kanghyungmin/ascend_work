@@ -1,7 +1,27 @@
+##  local에서 프로그램 수행 방법
+ ```
+ # checkout Master branch
+ git checkout master
+ 
+ # nest 모듈 설치
+ yarn add @nestjs/cli
+ 
+ # node-moudle 모듈 설치
+ yarn 
+ 
+ # 1번 container 수행
+ nest start data-app
+ 
+ # 2번 container 수행
+ nest start trade-app
+ ```
+
+***
+&nbsp;&nbsp;&nbsp;&nbsp;
 <a name="readme-top"></a>
 
 <!--  목 차  -->
-<details open>
+<details>
   <summary>목 차</summary>
   <ol>
     <li>
@@ -21,6 +41,7 @@
     </li>
   </ol>
 </details>
+&nbsp;&nbsp;&nbsp;&nbsp;
 
 <!-- 과제 설명 -->
 ## 과제 설명
@@ -62,9 +83,27 @@
 * 2개의 Container가 배포되며 각각 아래와 같은 목적을 가지고 있음
   - Data Container(가칭) : 바이낸스와 같은 곳에서 Data를 수집 / 전략 수행 / 체결 명령 전달
   - Trade Container(가칭) : Data Container로 부터 체결 명령을 전달받아 실제적으로 체결을 수행
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 프로그램 구조
+* 2개의 Container가 존재. 그리고 2개의 Container는 많은 부분을 공유. 이에, monorepo 방식으로 설계
+* libs에는 공통으로 사용되는 모듈, 데이터 타입, 그리고  ORM이 존재하며 &nbsp;  
+  apps 폴더에는 2개의 Container들에 대한 독립적인 로직들이 각각 존재
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## CI/CD 구성
+* Container마다 필요한 파일들(taskdefinition, workflow)이 존재하며 dockerfile은 공유
+* 아래와 같이 각 Container에 대한 배포 브랜치가 존재
+  - Data Container(가칭) : `deploy/data`
+  - Trade Container(가칭) : `deploy/trade`
+* 각 배포 브랜치에 Merge 시, 배포되도록 git actions 구성
+## 데이터 수집
+## 전략
 
 ## 이슈 
-* Container의 통신은 처음 GRPC를 사용했지만, 인프라 배포 시 GRPC 통신 설정에 애로 사항이 있어 restAPI 전환
-  ( 도메인 파기, SSL 연결, ALB gpc 설정에 따른 시간 소요)
-* Container 간 restAPI 통신 시, 
+* Container의 통신은 처음 gRPC를 사용했지만, 인프라 배포 시 GRPC 통신 설정에 애로 사항이 있어 &nbsp;  
+  restAPI 전환
+* Container 간 restAPI 통신 시, Cluster 내에서 통신하는 방법 적용 필요. 현재는 외부로 나갔다가 들어옴
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
    
