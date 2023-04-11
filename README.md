@@ -102,6 +102,34 @@
 
 ## 데이터 수집
 * _문제를 정확히 파악하고 진행해야하는데 그렇지 못해 요구하신 사항과 맞지 않는 부분이 있습니다. 양해 부탁 드립니다._
+* websocket으로 특정 페어 `BTCUSDT`에 대한 구독. Callbakc 함수에서 데이터 추출 후, 변수에 대입
+```typescript
+private async _onMessage(data) {
+    const { b, B, a, A } = JSON.parse(data); //데이터 추출
+    this.tickData = { bidPrice: b, bidQty: B, askPrice: a, askQty: A };
+  }
+```
+* 1분마다 주기적으로 호출하는 함수에서 해당 변수를 queue 등록
+  - 최대 120개의 데이터만 저장되며 이때 전략에 대한 판단 후, 트레이트 API 호출
+```typescript
+private async checkTrading() {
+    const checkFun = async () => {
+      // let start = new Date().getTime();
+      if (this.tickData) {
+        this.bidAskInfo.push(this.tickData);
+        if (this.bidAskInfo.length == this.tickDatanums) {
+          this.bidAskInfo.shift();
+          //전략에 기반하여 trade 여부 결정.this.resultChkStr 변수 참조
+          this.calStrategy(this.tickData.ask, this.tickData.bid);
+          await this.callTradeAPI();
+        }
+      }
+      // console.log(`elapsed time : ${new Date().getTime() - start}`);
+    };
+
+    setInterval(checkFun, 60000); // 1분
+  }
+```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 전략
