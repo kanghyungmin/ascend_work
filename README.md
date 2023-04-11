@@ -225,7 +225,8 @@ private calStrategy(askPrice: string, bidPrice: string) {
 * Container의 통신은 처음 gRPC를 사용했지만, 인프라 배포 시 GRPC 통신 설정에 애로 사항이 있어 &nbsp;  
   restAPI 전환
 * Container 간 restAPI 통신 시, Cluster 내에서 통신하는 방법 적용 필요. 현재는 외부로 나갔다가 들어옴
-* trading 시, 체결 수(qty)에 대한 별도 처리 필요. 
+* trading 시, 체결 수(qty)에 대한 별도 처리 필요
+* binance의 socket session ttl이 24h임. 이에 대한 갱신 로직 추가 필요
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
    
