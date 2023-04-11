@@ -114,13 +114,11 @@ private async _onMessage(data) {
 ```typescript
 private async checkTrading() {
     const checkFun = async () => {
-      // let start = new Date().getTime();
       if (this.tickData) {
         this.bidAskInfo.push(this.tickData);
         if (this.bidAskInfo.length == this.tickDatanums) {
           this.bidAskInfo.shift();
-          //전략에 기반하여 trade 여부 결정.this.resultChkStr 변수 참조
-          this.calStrategy(this.tickData.ask, this.tickData.bid);
+          this.calStrategy(this.tickData.ask, this.tickData.bid); //#ask: Ask Price, bid : Bid Price
           await this.callTradeAPI();
         }
       }
