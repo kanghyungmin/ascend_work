@@ -131,8 +131,8 @@ private async checkTrading() {
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 전략
-* 101개의 전략에 대해 판별하며 Map으로 결과를 저장. 이 결과를 참조로 tradeAPI를 호출
-* `tradedata` ep
+* 101개의 전략에 대해 체결 여부를 판별하며 Map으로 결과를 저장. 이 결과를 참조로 tradeAPI를 호출
+* `tradedata` 시, 데이터를 보면 상수 값(1)으로 고정. 이에 대한 고민 필요. 우선은 무조건 체결된다는 가정을 전제로 구현
 ```typescript
 private calStrategy(askPrice: string, bidPrice: string) {
     ...
@@ -191,6 +191,30 @@ private calStrategy(askPrice: string, bidPrice: string) {
     }
   }
 ```
+* trade 시, quote(socket callback에서 얻은 price/qty)에서 slippage가 발생하지 않는다는 조건으로 구현.
+  (paper account로 spot trading이 잘 되지 않아서요. 간단한 방법으로 상기와 같이 가정하고 구현)
+  아래 소스를 보시면 되게 간단하죠.^^;;
+  ```typescript
+    @Post('/trade')
+  async postTrade(@Body() tradeInfo: TradeData & { tradeId: string }): Promise<{
+    status: string;
+  }> {
+    await this.tradeModel.create({
+      tradeId: tradeInfo.tradeId,
+      price: tradeInfo.price,
+      qty: tradeInfo.qty,
+      side: tradeInfo.side == Side.BUY ? 'BUY' : 'SELL',
+    });
+
+    return {
+      status: 'ok',
+    };
+  }
+  ```
+* 마지막으로 DB에는 아래와 같이 데이터가 삽입됨 &nbsp;  
+![image](https://user-images.githubusercontent.com/71746295/231170467-dd239190-d92d-4890-8f1c-ddf04c6d47a1.png)
+
+   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## <del>모니터링</del>
@@ -201,6 +225,7 @@ private calStrategy(askPrice: string, bidPrice: string) {
 * Container의 통신은 처음 gRPC를 사용했지만, 인프라 배포 시 GRPC 통신 설정에 애로 사항이 있어 &nbsp;  
   restAPI 전환
 * Container 간 restAPI 통신 시, Cluster 내에서 통신하는 방법 적용 필요. 현재는 외부로 나갔다가 들어옴
+* trading 시, 체결 수(qty)에 대한 별도 처리 필요. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
    
