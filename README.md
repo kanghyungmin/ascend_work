@@ -102,7 +102,7 @@
 
 ## 데이터 수집
 * _문제를 정확히 파악하고 진행해야하는데 그렇지 못해 요구하신 사항과 맞지 않는 부분이 있습니다. 양해 부탁 드립니다._
-* websocket으로 특정 페어 `BTCUSDT`에 대한 구독. Callbakc 함수에서 데이터 추출 후, 변수에 대입
+* websocket으로 특정 페어 `BTCUSDT`에 대한 구독. Callback 함수에서 데이터 추출 후, 변수에 대입
 ```typescript
 private async _onMessage(data) {
     const { b, B, a, A } = JSON.parse(data); //데이터 추출
@@ -131,7 +131,66 @@ private async checkTrading() {
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 전략
-* __
+* 101개의 전략에 대해 판별하며 Map으로 결과를 저장. 이 결과를 참조로 tradeAPI를 호출
+* `tradedata` ep
+```typescript
+private calStrategy(askPrice: string, bidPrice: string) {
+    ...
+    ...
+    // golden cross : 단기 MA가 장기 MA를 돌파하고 올라갈 때. 그럼 그전은 단기 MA < 장기 MA
+    // dead cross :단기 MA가 장기 MA를 뚫고 내려갈 때, 그럼 그전은 단기 MA > 장기 MA
+    for (let i = 0; i < this.numStrategies; i++) {
+      const key = `Strategy-(${i + 10})`;
+      const [shortMA, longMA] = [
+        this.getMVfilter(i + 10),
+        this.getMVfilter(i + 20),
+      ];
+      let result = this.resultChkStr.get(key);
+      if (result.state === null) {
+        //// 변동성 체크 전, state 저장
+        result.state =
+          shortMA > longMA
+            ? State.BIG_SHORT_MA_THAN_LONG_MA
+            : State.BIG_LONG_MA_THAN_SHORT_MA;
+        this.resultChkStr.set(key, result);
+        break;
+      } else {
+        // Check Golden Cross or Dead Cross
+        switch (result.state) {
+          case State.BIG_SHORT_MA_THAN_LONG_MA: {
+            if (shortMA < longMA) {
+              result.execution = true;
+              result.state = State.BIG_LONG_MA_THAN_SHORT_MA;
+              result.tradeData = {
+                price: bidPrice,
+                qty: '1',
+                side: Side.SELL,
+              };
+            }
+            this.resultChkStr.set(key, result);
+            break;
+          }
+          case State.BIG_LONG_MA_THAN_SHORT_MA: {
+            if (shortMA > longMA) {
+              result.execution = true;
+              result.state = State.BIG_SHORT_MA_THAN_LONG_MA;
+              result.tradeData = {
+                price: askPrice,
+                qty: '1',
+                side: Side.BUY,
+              };
+            }
+            this.resultChkStr.set(key, result);
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+      }
+    }
+  }
+```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## <del>모니터링</del>
